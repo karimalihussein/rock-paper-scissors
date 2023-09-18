@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { HandOptions, IOptions, IOptionsContextTypes, Props } from "./OptionsContextTypes";
 import { FaRegHandRock, FaRegHandPaper, FaRegHandScissors } from 'react-icons/fa';
 
@@ -16,4 +16,12 @@ const OptionsContext = createContext<IOptionsContextTypes>({
 
 export function OptionsContextProvider(props: Props) {
     return <OptionsContext.Provider value={{ options }}>{props.children}</OptionsContext.Provider>
+}
+
+export function useOptions() {
+    const context = useContext(OptionsContext);
+    if (!context) {
+        throw new Error('useOptions must be used within a OptionsContextProvider')
+    }
+    return context;
 }
