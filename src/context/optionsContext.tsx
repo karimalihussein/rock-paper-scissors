@@ -1,6 +1,8 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useReducer } from "react";
 import { HandOptions, IOptions, IOptionsContextTypes, Props } from "./OptionsContextTypes";
 import { FaRegHandRock, FaRegHandPaper, FaRegHandScissors } from 'react-icons/fa';
+import { initialState } from "./initialContextValues";
+import scoreReducer from "../reducers/scoreReducer";
 
 
 const options: IOptions[] = [
@@ -10,12 +12,20 @@ const options: IOptions[] = [
 ]
 
 const OptionsContext = createContext<IOptionsContextTypes>({
-    options: []
+    options: [],
+    state: initialState,
+    dispatch: () => { }
 });
 
 
 export function OptionsContextProvider(props: Props) {
-    return <OptionsContext.Provider value={{ options }}>{props.children}</OptionsContext.Provider>
+    const [state, dispatch] = useReducer(scoreReducer, initialState);
+    const contextValue = {
+        options,
+        state,
+        dispatch
+    };
+    return <OptionsContext.Provider value={contextValue}>{props.children}</OptionsContext.Provider>
 }
 
 export function useOptions() {
