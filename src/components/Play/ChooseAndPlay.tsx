@@ -13,6 +13,7 @@ const ChooseAndPlay = () => {
     const play = () => {
         const randomIndex = generateRandomIndex();
         dispatch({ type: OptionActionKind.UPDATE_COMPUTER_CHOICE, payload: randomIndex });
+        dispatch({ type: OptionActionKind.RUN_TIMER, payload: true });
     }
     return (
         <>
