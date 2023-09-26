@@ -23,7 +23,7 @@ describe("ScoreAndResults", () => {
             vi.advanceTimersByTime(2000);
         });
 
-        screen.debug();
+        // screen.debug();
 
         expect(screen.getByText(/1/i)).toBeTruthy();
 

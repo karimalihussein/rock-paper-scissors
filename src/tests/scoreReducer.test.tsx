@@ -45,4 +45,12 @@ describe("TestingComponent", () => {
         render(<TestingComponent myAction={{ type: OptionActionKind.UPDATE_PLAYER_CHOICE, payload: 0 }} />);
         expect(screen.getByText("playerhand: 0")).toBeTruthy();
     });
+
+    it("should update the scoreRenducer with the player wins", () => {
+        render(<TestingComponent myAction={{ type: OptionActionKind.UPDATE_PLAYER_CHOICE, payload: 0 }} />);
+
+        expect(screen.getByText("playerhand: 0")).toBeTruthy();
+    });
+
+
 });
